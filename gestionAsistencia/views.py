@@ -5,7 +5,7 @@ from gestionAsistencia.models import Alumnos, Atrasado, Puntual
 # Create your views here.
 
 def inicio_sesion(request):
-    return render(request, "inicio_sesion.html")
+    return render(request, "index.html")
 
 def verificacion(request):
     
