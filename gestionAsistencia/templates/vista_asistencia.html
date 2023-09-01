@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://static.wixstatic.com/media/be9369_da220d76c34e4cb687b398c2eb4c179b~mv2.png/v1/fill/w_137,h_134,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/insg%2520laurel_edited.png">
+    <title>Registro Asistencia</title>
+    <style>
+
+*{
+	padding: 0;
+	margin: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body{
+    background-color: #141938;
+    margin: 25px; 
+	font-size: 20px;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#error{
+    text-align: center;
+    color: #d20404;
+}
+h1{
+    text-align: center;
+    text-decoration: underline;
+    margin: 30px;
+    color: rgb(126, 81, 209);
+}
+.info{
+	text-align: left;
+    color: rgb(105, 65, 180);
+	text-shadow: 1px 1px 2px black;
+    margin: 35px;
+    margin-bottom: 5px;
+    padding: 15px;
+}
+.caja{
+    display: flex;
+    align-items: flex-start;
+}
+.tarde{
+    background-color: white;
+    display: inline-block;
+    margin-top: 0px;
+    padding: 8px;
+    border-right: 3px solid #141938;
+    width: 49%;
+}
+.puntual{
+    background-color: white;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 8px;
+    border-right: 3px solid #141938;
+    width: 49%;
+}
+.sub1{
+    color: #d20404;
+    text-shadow: 1px 1px 2px rgb(71, 8, 8);
+    margin-left: 25px;
+}
+.sub2{
+    color: rgb(21, 235, 21);
+    text-shadow: 1px 1px 2px green;
+    margin-left: 25px;
+}
+ul{
+    list-style: square;
+}
+li{
+    color: #141938;
+    margin-left: 125px;
+    margin-bottom: 4px;
+    font-weight: bold;
+    
+}
+a{
+    text-decoration: none;
+    color: #d20404;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid black;
+    margin-top: 5%;
+    padding: 8px;
+}
+a:hover{
+    background-color: mediumpurple;
+}
+    </style>
+</head>
+<body>
+
+    {% if alumno %}
+       
+        {% if contraseña != alumno.0.contraseña %}
+        <div id="error">
+            <h2 >CONTRASEÑA INCORRECTA</h2><br>
+            <a href="../inicio_sesion/">Volver a intentar</a>
+        </div>
+            
+
+        {% else %}
+        <h1><b>Registro Asistencia</b></h1>
+        <div class="info">
+
+            <h2>Alumno buscado: <small>{{alumno.0.nombre}}</small></h2>
+            <h3>DNI: {{query}}</h3>
+            <h3>Grado: {{alumno.0.grado}}</h3>
+            <h3>Sección: {{alumno.0.seccion}}</h3>
+
+        </div>
+        <div class="caja">
+
+            <div class="tarde">
+
+                <h2 class="sub1">Tarde:</h2>
+                <ul>
+                    {% for atrasado in atrasados %}
+                        <li> {{atrasado}}</li>
+                    {% endfor %}
+                </ul>
+    
+            </div>
+            <div class="puntual">
+    
+                <h2  class="sub2">Puntual:</h2>
+                <ul>
+                    {% for puntual in puntuales %}
+                        <li> {{puntual}}</li>
+                    {% endfor %}
+                </ul>
+    
+            </div>
+
+        </div>
+        
+        <br><br>    
+        <a href="../inicio_sesion/">Cerrar Sesión</a>
+        
+        {% endif %}
+    
+    {% else %}
+
+    <div id="error">
+        <h2 >USUARIO NO IDENTIFICADO</h2><br>
+        <a href="../inicio_sesion/">Volver a intentar</a>
+    </div>
+
+    {% endif %}
+    
+</body>
+</html>
